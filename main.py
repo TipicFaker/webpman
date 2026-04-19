@@ -21,5 +21,16 @@ def convert(dir):
     print(f"Image converted and saved as {jpg_filename}")
 
 
-dir = input("Enter the path to the WebP image: ")
-convert(dir)
+#dir = input("Enter the path to the WebP image: ")
+#convert(dir)
+
+import sys
+# sys.argv[0] is the script name itself
+# sys.argv[1:] contains the paths of all dropped files
+if len(sys.argv) > 1:
+    dropped_files = sys.argv[1:]
+    for file_path in dropped_files:
+        print(f"Processing file: {file_path}")
+        convert(file_path)
+else:
+    print("No files were dropped.")
