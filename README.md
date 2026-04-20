@@ -2,7 +2,7 @@
 simple app to convert webp to jpg.
 
 #How to use
-Windows:
+Windows: (doesnt work. refer to linux method for now)
 1. Download main.py and name it to whatever you wish.
 2. Drag the .webp file you wish to convert into main.py
 3. .jpg file is ready for you at same location where your .webp file was at
