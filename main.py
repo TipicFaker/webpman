@@ -1,5 +1,6 @@
 import cv2
 import os
+import PySimpleGUI as sg
 
 #vibecoded piece of junk
 
@@ -24,13 +25,36 @@ def convert(dir):
 #dir = input("Enter the path to the WebP image: ")
 #convert(dir)
 
-import sys
+#import sys
 # sys.argv[0] is the script name itself
 # sys.argv[1:] contains the paths of all dropped files
-if len(sys.argv) > 1:
-    dropped_files = sys.argv[1:]
-    for file_path in dropped_files:
-        print(f"Processing file: {file_path}")
-        convert(file_path)
-else:
-    print("No files were dropped.")
+#if len(sys.argv) > 1:
+#    dropped_files = sys.argv[1:]
+#    for file_path in dropped_files:
+#        print(f"Processing file: {file_path}")
+#        convert(file_path)
+#else:
+#    print("No files were dropped.")
+
+layout = [[sg.Text("Choose a webp file to convert to jpg")], [sg.Button("Choose a file")], [sg.Button("Exit")]]
+
+# Create the window
+window = sg.Window("WebPman", layout)
+
+# Create an event loop
+while True:
+    event, values = window.read()
+    # End program if user closes window or
+    # presses the Exit button
+    if event == "Exit" or event == sg.WIN_CLOSED:
+        break
+    elif event == "Choose a file":
+        file_path = sg.popup_get_file("Select a WebP image", file_types=(("WebP Files", "*.webp"),))
+        if file_path:
+            try:
+                convert(file_path)
+                sg.popup("Conversion successful!", title="Success")
+            except Exception as e:
+                sg.popup(f"Error: {str(e)}", title="Error")
+
+        break
